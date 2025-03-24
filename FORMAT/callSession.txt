@@ -1,0 +1,15 @@
+CallSession {
+    callID;
+    from;
+    to;
+    state;
+    <MediaStream> mediaStreams[{
+        MediaStream {
+            type;      // audio/video/screen
+            codec;
+            port;
+            state;     // active/held/terminated
+        };
+ 
+    },];
+};

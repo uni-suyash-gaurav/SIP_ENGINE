@@ -1,0 +1,1 @@
+. "/mnt/c/Users/102151/OneDrive - UNIPHORE SOFTWARE SYSTEMS PVT LTD/Documents/SIP_ENGINE/Capture/build/dependencies/deactivate_conanbuildenv-release-x86_64.sh"

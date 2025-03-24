@@ -1,0 +1,28 @@
+{
+    "call_id": "call_12345",
+    "timestamp": "2025-02-27T12:34:56Z",
+    "extension": "6003",
+    "sip_method": "INVITE",
+    "from": "sip:6003@domain.com",
+    "to": "sip:6006@domain.com",
+    "call_direction": "incoming",
+    "call_type": "external",
+    "src_ip": "192.168.1.100",
+    "dst_ip": "192.168.1.200",
+    "CSeq": "1 INVITE",
+    "User-Agent": "MicroSIP/3.19.30",
+    "sdp": {
+      "media": "audio",
+      "codec": ["G711", "G729"],
+      "port": 4000,
+      "Connection-Information": ["192.12.31.2", "192.12.31.4"]
+    }
+}
+  
+"
+{
+    call_id,
+    states[],  (Array of states)
+    sessionData
+}
+"

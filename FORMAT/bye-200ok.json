@@ -1,0 +1,22 @@
+{
+    "call_id": "call_12345",
+    "state": "CALL_TERMINATED",
+    "timestamp": "2025-02-27T12:40:30Z",
+    "extension": [
+        "6003", "6006"
+    ],
+    "sip_method": "BYE",
+    "from": "sip:6003@domain.com",
+    "to": "sip:6006@domain.com",
+    "call_direction": "incoming",
+    "call_type": "external",
+    "src_ip": "192.168.1.100",
+    "dst_ip": "192.168.1.200",
+    "responses": [
+      {
+        "code": 200,
+        "message": "OK"
+      }
+    ]
+  }
+  

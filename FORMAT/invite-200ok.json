@@ -1,0 +1,35 @@
+{
+    "call_id": "call_12345",
+    "state": "CALL_SETUP",
+    "timestamp": "2025-02-27T12:34:56Z",
+    "extension": [
+        "6003", "6006"
+    ],
+    "sip_method": "INVITE",
+    "from": "sip:6003@domain.com",
+    "to": "sip:6006@domain.com",
+    "call_direction": "incoming",
+    "call_type": "external",
+    "src_ip": "192.168.1.100",
+    "dst_ip": "192.168.1.200",
+    "User-Agent": "MicroSIP/3.19.30",
+    "sdp": {
+      "media": "audio",
+      "codec": "G711",
+      "port": 5060
+    },
+    "responses": [
+      {
+        "code": 100,
+        "message": "Trying"
+      },
+      {
+        "code": 180,
+        "message": "Ringing"
+      },
+      {
+        "code": 200,
+        "message": "OK"
+      }
+    ]
+}
