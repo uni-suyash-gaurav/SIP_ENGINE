@@ -1,16 +1,7 @@
+#include "SIPPacketQueue.h"
 #include <iostream>
 #include <pcap.h>
 #include <ace/Unbounded_Queue.h>
-#include <vector>
-#include <mutex>
-
-struct sipPacket{
-    uint64_t seq_no; // Timestamp based sequence no.
-    std::vector<uint8_t> packetData;
-};
-
-ACE_Unbounded_Queue<sipPacket> sipPacketQueue;
-std::mutex mtx;
 
 bool isSIPPacket(const struct pcap_pkthdr* header, const u_char* packet) {
     if (header->caplen < 42) return false; // 14 bytes ethernet header + 20 bytes IP header + 8 bytes UDP header
@@ -40,9 +31,8 @@ void filterSIPPackets(const char* filename){
 
             // std::cout << pkt.packetData.size() << " " << header->caplen << std::endl;
             
-            // Push directly into the global queue
-            // std::lock_guard<std::mutex> lock(mtx);
-            sipPacketQueue.enqueue_tail(pkt);
+            // Push directly into the queue
+            SIPPacketQueue::getInstance().enqueue(pkt);
         }
     }
     pcap_close(pcap);
@@ -52,9 +42,9 @@ int main() {
     const char* filename = "../USS_test_Oneway_audio.pcapng";
     filterSIPPackets(filename);
 
-    while(!sipPacketQueue.is_empty()){
+    while(!SIPPacketQueue::getInstance().isEmpty()) {
         sipPacket pkt;
-        sipPacketQueue.dequeue_head(pkt);
+        SIPPacketQueue::getInstance().dequeue(pkt);
         std::cout << pkt.seq_no << ", " << pkt.packetData.size() << " Bytes" << std::endl;
     }
     return 0;

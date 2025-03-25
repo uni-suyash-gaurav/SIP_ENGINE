@@ -1,18 +1,8 @@
+#include "SIPPacketQueue.h"
 #include <iostream>
 #include <pcap.h>
-#include <ace/Unbounded_Queue.h>
-#include <vector>
-#include <mutex>
 #include <string>
 #include <regex>
-
-struct sipPacket {
-    uint64_t seq_no; // Timestamp-based sequence number
-    std::vector<uint8_t> packetData;
-};
-
-ACE_Unbounded_Queue<sipPacket> sipPacketQueue;
-std::mutex mtx;
 
 bool isSIPPacket(const struct pcap_pkthdr* header, const u_char* packet) {
     if (header->caplen < 42) return false; // Ethernet (14) + IP (20) + UDP (8)
@@ -64,8 +54,7 @@ void packetHandler(u_char* user, const struct pcap_pkthdr* header, const u_char*
         // Extract details
         extractSIPDetails(payload);
 
-        std::lock_guard<std::mutex> lock(mtx);
-        sipPacketQueue.enqueue_tail(pkt);
+        SIPPacketQueue::getInstance().enqueue(pkt);
     }
 }
 
