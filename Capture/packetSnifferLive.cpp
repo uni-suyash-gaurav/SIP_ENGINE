@@ -43,7 +43,9 @@ void packetHandler(u_char* user, const struct pcap_pkthdr* header, const u_char*
     if (isSIPPacket(header, packet)) {
         sipPacket pkt;
         pkt.seq_no = header->ts.tv_sec * 1000000 + header->ts.tv_usec;
+        // pkt.packetData = (char*)packet + 14;
         pkt.packetData.assign(packet + 14, packet + header->caplen);
+
         // std::cout << pkt.seq_no << " " << pkt.packetData.size() << " " << header->caplen << std::endl;
 
         // Get UDP payload (SIP message)

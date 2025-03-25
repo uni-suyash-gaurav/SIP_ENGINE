@@ -32,7 +32,10 @@
     "testPresets": [
         {
             "name": "conan-release",
-            "configurePreset": "conan-release"
+            "configurePreset": "conan-release",
+            "environment": {
+                "OPENSSL_MODULES": "/home/suyashgaurav72/.conan2/p/b/opens88671bfd44ecd/p/lib/ossl-modules"
+            }
         }
     ]
 }

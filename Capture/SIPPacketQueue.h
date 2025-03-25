@@ -4,6 +4,7 @@
 #include <ace/Unbounded_Queue.h>
 #include <mutex>
 #include <vector>
+#include <queue>
 
 struct sipPacket {
     uint64_t seq_no; // Timestamp-based sequence number
@@ -23,21 +24,21 @@ public:
     
     void enqueue(const sipPacket& pkt) {
         std::lock_guard<std::mutex> lock(mtx);
-        queue.enqueue_tail(pkt);
+        q.push(pkt);
     }
 
-    bool dequeue(sipPacket& pkt) {
-        std::lock_guard<std::mutex> lock(mtx);
-        return queue.dequeue_head(pkt) == 0;
+    void dequeue(sipPacket& pkt) {
+        pkt = q.front();
+        q.pop();
     }
 
     bool isEmpty() {
         std::lock_guard<std::mutex> lock(mtx);
-        return queue.is_empty();
+        return q.empty();
     }
 
 private:
-    ACE_Unbounded_Queue<sipPacket> queue;
+    std::queue<sipPacket> q;
     std::mutex mtx;
 
     SIPPacketQueue() {}

@@ -93,6 +93,10 @@ main_EXTERNAL_OBJECTS =
 main: CMakeFiles/main.dir/PacketSniffer.cpp.o
 main: CMakeFiles/main.dir/build.make
 main: /home/suyashgaurav72/.conan2/p/b/libpc91d53db0e773f/p/lib/libpcap.a
+main: /home/suyashgaurav72/.conan2/p/b/cnats383ef0346a326/p/lib/libnats_static.a
+main: /home/suyashgaurav72/.conan2/p/b/opens88671bfd44ecd/p/lib/libssl.a
+main: /home/suyashgaurav72/.conan2/p/b/opens88671bfd44ecd/p/lib/libcrypto.a
+main: /home/suyashgaurav72/.conan2/p/b/zlibcd619084bcee8/p/lib/libz.a
 main: CMakeFiles/main.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/mnt/c/Users/102151/OneDrive - UNIPHORE SOFTWARE SYSTEMS PVT LTD/Documents/SIP_ENGINE/Capture/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable main"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/main.dir/link.txt --verbose=$(VERBOSE)

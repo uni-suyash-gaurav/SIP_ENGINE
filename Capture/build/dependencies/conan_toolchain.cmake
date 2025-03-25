@@ -128,15 +128,18 @@ else()
 set(CMAKE_FIND_PACKAGE_PREFER_CONFIG ON)
 
 # Definition of CMAKE_MODULE_PATH
+list(PREPEND CMAKE_MODULE_PATH "/home/suyashgaurav72/.conan2/p/b/opens88671bfd44ecd/p/lib/cmake")
 # the generators folder (where conan generates files, like this toolchain)
 list(PREPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR})
 
 # Definition of CMAKE_PREFIX_PATH, CMAKE_XXXXX_PATH
+# The explicitly defined "builddirs" of "host" context dependencies must be in PREFIX_PATH
+list(PREPEND CMAKE_PREFIX_PATH "/home/suyashgaurav72/.conan2/p/b/opens88671bfd44ecd/p/lib/cmake")
 # The Conan local "generators" folder, where this toolchain is saved.
 list(PREPEND CMAKE_PREFIX_PATH ${CMAKE_CURRENT_LIST_DIR} )
-list(PREPEND CMAKE_LIBRARY_PATH "/home/suyashgaurav72/.conan2/p/b/libpc91d53db0e773f/p/lib")
-list(PREPEND CMAKE_INCLUDE_PATH "/home/suyashgaurav72/.conan2/p/b/libpc91d53db0e773f/p/include")
-set(CONAN_RUNTIME_LIB_DIRS "/home/suyashgaurav72/.conan2/p/b/libpc91d53db0e773f/p/lib" )
+list(PREPEND CMAKE_LIBRARY_PATH "/home/suyashgaurav72/.conan2/p/b/libpc91d53db0e773f/p/lib" "/home/suyashgaurav72/.conan2/p/b/cnats383ef0346a326/p/lib" "/home/suyashgaurav72/.conan2/p/b/opens88671bfd44ecd/p/lib" "/home/suyashgaurav72/.conan2/p/b/zlibcd619084bcee8/p/lib")
+list(PREPEND CMAKE_INCLUDE_PATH "/home/suyashgaurav72/.conan2/p/b/libpc91d53db0e773f/p/include" "/home/suyashgaurav72/.conan2/p/b/cnats383ef0346a326/p/include" "/home/suyashgaurav72/.conan2/p/b/opens88671bfd44ecd/p/include" "/home/suyashgaurav72/.conan2/p/b/zlibcd619084bcee8/p/include")
+set(CONAN_RUNTIME_LIB_DIRS "/home/suyashgaurav72/.conan2/p/b/libpc91d53db0e773f/p/lib" "/home/suyashgaurav72/.conan2/p/b/cnats383ef0346a326/p/lib" "/home/suyashgaurav72/.conan2/p/b/opens88671bfd44ecd/p/lib" "/home/suyashgaurav72/.conan2/p/b/zlibcd619084bcee8/p/lib" )
 
 endif()
 

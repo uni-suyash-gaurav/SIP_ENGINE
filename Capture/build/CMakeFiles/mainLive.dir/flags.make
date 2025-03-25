@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -isystem /home/suyashgaurav72/.conan2/p/b/libpc91d53db0e773f/p/include
+CXX_INCLUDES = -isystem /home/suyashgaurav72/.conan2/p/b/libpc91d53db0e773f/p/include -isystem /home/suyashgaurav72/.conan2/p/b/cnats383ef0346a326/p/include
 
 CXX_FLAGS = -O3 -DNDEBUG
 

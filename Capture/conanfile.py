@@ -8,6 +8,7 @@ class ExampleRecipe(ConanFile):
  
     def requirements(self):
         self.requires("libpcap/1.10.5")
+        self.requires("cnats/3.9.2")
  
     def layout(self):
         self.folders.build="build"

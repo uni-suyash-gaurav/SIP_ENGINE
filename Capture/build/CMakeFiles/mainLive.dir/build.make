@@ -93,6 +93,10 @@ mainLive_EXTERNAL_OBJECTS =
 mainLive: CMakeFiles/mainLive.dir/packetSnifferLive.cpp.o
 mainLive: CMakeFiles/mainLive.dir/build.make
 mainLive: /home/suyashgaurav72/.conan2/p/b/libpc91d53db0e773f/p/lib/libpcap.a
+mainLive: /home/suyashgaurav72/.conan2/p/b/cnats383ef0346a326/p/lib/libnats_static.a
+mainLive: /home/suyashgaurav72/.conan2/p/b/opens88671bfd44ecd/p/lib/libssl.a
+mainLive: /home/suyashgaurav72/.conan2/p/b/opens88671bfd44ecd/p/lib/libcrypto.a
+mainLive: /home/suyashgaurav72/.conan2/p/b/zlibcd619084bcee8/p/lib/libz.a
 mainLive: CMakeFiles/mainLive.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/mnt/c/Users/102151/OneDrive - UNIPHORE SOFTWARE SYSTEMS PVT LTD/Documents/SIP_ENGINE/Capture/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable mainLive"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/mainLive.dir/link.txt --verbose=$(VERBOSE)
