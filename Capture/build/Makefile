@@ -129,6 +129,19 @@ main/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
 .PHONY : main/fast
 
+#=============================================================================
+# Target rules for targets named mainLive
+
+# Build rule for target.
+mainLive: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mainLive
+.PHONY : mainLive
+
+# fast build rule for target.
+mainLive/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mainLive.dir/build.make CMakeFiles/mainLive.dir/build
+.PHONY : mainLive/fast
+
 PacketSniffer.o: PacketSniffer.cpp.o
 .PHONY : PacketSniffer.o
 
@@ -153,6 +166,30 @@ PacketSniffer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/PacketSniffer.cpp.s
 .PHONY : PacketSniffer.cpp.s
 
+packetSnifferLive.o: packetSnifferLive.cpp.o
+.PHONY : packetSnifferLive.o
+
+# target to build an object file
+packetSnifferLive.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mainLive.dir/build.make CMakeFiles/mainLive.dir/packetSnifferLive.cpp.o
+.PHONY : packetSnifferLive.cpp.o
+
+packetSnifferLive.i: packetSnifferLive.cpp.i
+.PHONY : packetSnifferLive.i
+
+# target to preprocess a source file
+packetSnifferLive.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mainLive.dir/build.make CMakeFiles/mainLive.dir/packetSnifferLive.cpp.i
+.PHONY : packetSnifferLive.cpp.i
+
+packetSnifferLive.s: packetSnifferLive.cpp.s
+.PHONY : packetSnifferLive.s
+
+# target to generate assembly for a file
+packetSnifferLive.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mainLive.dir/build.make CMakeFiles/mainLive.dir/packetSnifferLive.cpp.s
+.PHONY : packetSnifferLive.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -162,9 +199,13 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... main"
+	@echo "... mainLive"
 	@echo "... PacketSniffer.o"
 	@echo "... PacketSniffer.i"
 	@echo "... PacketSniffer.s"
+	@echo "... packetSnifferLive.o"
+	@echo "... packetSnifferLive.i"
+	@echo "... packetSnifferLive.s"
 .PHONY : help
 
 

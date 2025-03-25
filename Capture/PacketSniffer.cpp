@@ -3,7 +3,6 @@
 #include <ace/Unbounded_Queue.h>
 #include <vector>
 #include <mutex>
-#include <memory>
 
 struct sipPacket{
     uint64_t seq_no; // Timestamp based sequence no.
