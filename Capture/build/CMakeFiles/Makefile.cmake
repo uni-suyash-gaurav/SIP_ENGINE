@@ -69,4 +69,5 @@ set(CMAKE_MAKEFILE_PRODUCTS
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/main.dir/DependInfo.cmake"
   "CMakeFiles/mainLive.dir/DependInfo.cmake"
+  "CMakeFiles/jsSubscriber.dir/DependInfo.cmake"
   )

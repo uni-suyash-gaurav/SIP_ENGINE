@@ -9,6 +9,7 @@ link_directories(/usr/local/lib)
 
 add_executable(main PacketSniffer.cpp)
 add_executable(mainLive packetSnifferLive.cpp)
+add_executable(jsSubscriber parserSubscriber.cpp)
 
 find_package(libpcap REQUIRED)
 find_package(cnats REQUIRED)
@@ -19,3 +20,4 @@ target_link_libraries(main ACE)
 target_link_libraries(mainLive libpcap::libpcap)
 target_link_libraries(mainLive ACE)
 target_link_libraries(mainLive cnats::nats_static)
+target_link_libraries(jsSubscriber cnats::nats_static)

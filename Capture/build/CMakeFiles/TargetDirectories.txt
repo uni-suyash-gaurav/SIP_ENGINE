@@ -1,4 +1,5 @@
 /mnt/c/Users/102151/OneDrive - UNIPHORE SOFTWARE SYSTEMS PVT LTD/Documents/SIP_ENGINE/Capture/build/CMakeFiles/main.dir
 /mnt/c/Users/102151/OneDrive - UNIPHORE SOFTWARE SYSTEMS PVT LTD/Documents/SIP_ENGINE/Capture/build/CMakeFiles/mainLive.dir
+/mnt/c/Users/102151/OneDrive - UNIPHORE SOFTWARE SYSTEMS PVT LTD/Documents/SIP_ENGINE/Capture/build/CMakeFiles/jsSubscriber.dir
 /mnt/c/Users/102151/OneDrive - UNIPHORE SOFTWARE SYSTEMS PVT LTD/Documents/SIP_ENGINE/Capture/build/CMakeFiles/edit_cache.dir
 /mnt/c/Users/102151/OneDrive - UNIPHORE SOFTWARE SYSTEMS PVT LTD/Documents/SIP_ENGINE/Capture/build/CMakeFiles/rebuild_cache.dir

@@ -142,6 +142,19 @@ mainLive/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/mainLive.dir/build.make CMakeFiles/mainLive.dir/build
 .PHONY : mainLive/fast
 
+#=============================================================================
+# Target rules for targets named jsSubscriber
+
+# Build rule for target.
+jsSubscriber: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 jsSubscriber
+.PHONY : jsSubscriber
+
+# fast build rule for target.
+jsSubscriber/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jsSubscriber.dir/build.make CMakeFiles/jsSubscriber.dir/build
+.PHONY : jsSubscriber/fast
+
 PacketSniffer.o: PacketSniffer.cpp.o
 .PHONY : PacketSniffer.o
 
@@ -190,6 +203,30 @@ packetSnifferLive.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/mainLive.dir/build.make CMakeFiles/mainLive.dir/packetSnifferLive.cpp.s
 .PHONY : packetSnifferLive.cpp.s
 
+parserSubscriber.o: parserSubscriber.cpp.o
+.PHONY : parserSubscriber.o
+
+# target to build an object file
+parserSubscriber.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jsSubscriber.dir/build.make CMakeFiles/jsSubscriber.dir/parserSubscriber.cpp.o
+.PHONY : parserSubscriber.cpp.o
+
+parserSubscriber.i: parserSubscriber.cpp.i
+.PHONY : parserSubscriber.i
+
+# target to preprocess a source file
+parserSubscriber.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jsSubscriber.dir/build.make CMakeFiles/jsSubscriber.dir/parserSubscriber.cpp.i
+.PHONY : parserSubscriber.cpp.i
+
+parserSubscriber.s: parserSubscriber.cpp.s
+.PHONY : parserSubscriber.s
+
+# target to generate assembly for a file
+parserSubscriber.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jsSubscriber.dir/build.make CMakeFiles/jsSubscriber.dir/parserSubscriber.cpp.s
+.PHONY : parserSubscriber.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -198,6 +235,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... jsSubscriber"
 	@echo "... main"
 	@echo "... mainLive"
 	@echo "... PacketSniffer.o"
@@ -206,6 +244,9 @@ help:
 	@echo "... packetSnifferLive.o"
 	@echo "... packetSnifferLive.i"
 	@echo "... packetSnifferLive.s"
+	@echo "... parserSubscriber.o"
+	@echo "... parserSubscriber.i"
+	@echo "... parserSubscriber.s"
 .PHONY : help
 
 
