@@ -1,13 +1,18 @@
-#include "SIPPacketQueue.h"
 #include <iostream>
 #include <nats/nats.h>
 #include <thread>
 #include <chrono>
 #include <cstring>
+#include <vector>
 
 #define SUBJECT_NAME "sip.packets"
 #define STREAM_NAME "sip_packets"
 #define CONSUMER_NAME "sip_packet_consumer"
+
+struct sipPacket {
+    uint64_t seq_no; // Timestamp-based sequence number
+    std::vector<uint8_t> packetData;
+};
 
 // Deserialize function
 sipPacket deserializePacket(const uint8_t* data, size_t length) {
@@ -76,7 +81,7 @@ int main(){
         return 1;
     }
 
-    std::cout << "Parser is listening for messages." << std::endl; // Supports js_WorkQueuePolicy
+    std::cout << "Parser is listening for messages." << std::endl;
 
     while (true) {
         // Fetch up to 5 messages, wait up to 1 second
@@ -117,7 +122,7 @@ int main(){
                     sipData += (char)pkt.packetData[i]; // Convert byte to char for readability
                 }
                 std::cout << sipData << std::endl;
-                
+
 
                 // Simulate processing delay
                 std::this_thread::sleep_for(std::chrono::seconds(1));

@@ -26,10 +26,10 @@ bool isSIPPacket(const struct pcap_pkthdr* header, const u_char* packet) {
     uint16_t src_port = (ip_header[20] << 8) | ip_header[21];
     uint16_t dst_port = (ip_header[22] << 8) | ip_header[23];
 
-    if (src_port != 5060 && dst_port != 5060) return false; // Ensure SIP traffic
+    if (src_port != 5060 && dst_port != 5060) return false;
 
     // Calculate UDP payload start position
-    const uint8_t* udp_payload = packet + 14 + 20 + 8; // Skip Ethernet, IP, and UDP headers
+    const uint8_t* udp_payload = packet + 14 + 20 + 8;
     int payload_length = header->caplen - (14 + 20 + 8);
 
     if (payload_length <= 0) return false; // No data, not a SIP packet
@@ -69,8 +69,6 @@ int main() {
     jsCtx *js = NULL;
     jsErrCode jerr;
     jsStreamInfo *si = NULL;
-    const char *message = "Hello, JetStream!!";
-    int msgLen = std::strlen(message);
 
     // Connect to NATS server
     s = natsConnection_ConnectTo(&conn, "nats://localhost:4222");

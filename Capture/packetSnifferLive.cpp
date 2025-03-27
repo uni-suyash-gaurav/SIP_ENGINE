@@ -1,62 +1,85 @@
-#include "SIPPacketQueue.h"
-#include <iostream>
-#include <pcap.h>
+#include "utils.h"
+#include <nats/nats.h>
 #include <string>
-#include <regex>
 
-bool isSIPPacket(const struct pcap_pkthdr* header, const u_char* packet) {
-    if (header->caplen < 42) return false; // Ethernet (14) + IP (20) + UDP (8)
-    const uint8_t* ip_header = packet + 14;
-    uint8_t protocol = ip_header[9];
-    uint16_t src_port = (ip_header[20] << 8) | ip_header[21];
-    uint16_t dst_port = (ip_header[22] << 8) | ip_header[23];
+#define SUBJECT_NAME "sip.packets"
+#define STREAM_NAME "sip_packets"
 
-    return (protocol == 17 && (src_port == 5060 || dst_port == 5060));
+natsStatus s;
+natsConnection *conn = NULL;
+jsCtx *js = NULL;
+jsErrCode jerr;
+jsStreamInfo *si = NULL;
+
+void NATSInitialize(){
+    // Connect to NATS server
+    s = natsConnection_ConnectTo(&conn, "nats://localhost:4222");
+    if (s != NATS_OK) {
+        std::cerr << "Error connecting: " << natsStatus_GetText(s) << std::endl;
+        return;
+    }
+
+    // Create JetStream context
+    s = natsConnection_JetStream(&js, conn, NULL);
+    if (s != NATS_OK) {
+        std::cerr << "Error creating JetStream context: " << natsStatus_GetText(s) << std::endl;
+        natsConnection_Destroy(conn);
+        return;
+    }
+
+    // Check if stream already exists
+    s = js_GetStreamInfo(&si, js, STREAM_NAME, NULL, &jerr);
+    if (s != NATS_OK) {
+        std::cout << "Stream does not exist, creating new stream..." << std::endl;
+
+        // Define stream configuration
+        jsStreamConfig cfg;
+        jsStreamConfig_Init(&cfg);
+        cfg.Name = STREAM_NAME;
+        const char *subjects[] = {SUBJECT_NAME};
+        cfg.Subjects = subjects;
+        cfg.SubjectsLen = 1;
+        cfg.Storage = js_MemoryStorage;
+        cfg.Retention = js_WorkQueuePolicy;  // This ensures messages are removed after being received
+
+        // Add the stream
+        s = js_AddStream(&si, js, &cfg, NULL, &jerr);
+        if (s != NATS_OK) {
+            std::cerr << "Error adding stream: " << natsStatus_GetText(s)
+                    << " - JetStream error code: " << jerr << std::endl;
+            natsConnection_Destroy(conn);
+            return;
+        }
+    } else {
+        std::cout << "Stream already exists." << std::endl;
+    }
 }
 
-// Function to extract SIP details (extension, IP, and message type)
-void extractSIPDetails(const std::string& payload) {
-    std::regex sip_regex(R"(From:\s*<sip:(\d+)@([\d\.]+)>)"); // Extract extension and IP
-    std::smatch match;
-
-    std::string extension, ip, sipMessageType;
-
-    // Extract extension & IP
-    if (std::regex_search(payload, match, sip_regex)) {
-        extension = match[1];
-        ip = match[2];
+void publishPacketToNats(std::vector<uint8_t> serializedData) {
+    // Publish a message
+    jsPubAck *pa = NULL;
+    s = js_Publish(&pa, js, SUBJECT_NAME, serializedData.data(), serializedData.size(), NULL, &jerr);
+    if (s != NATS_OK) {
+        std::cerr << "Error publishing message: " << natsStatus_GetText(s)
+                << " - JetStream error code: " << jerr << std::endl;
+    } else {
+        std::cout << "Published message with sequence: " << pa->Sequence << std::endl;
     }
-
-    // Extract SIP message type (first line of SIP message)
-    std::istringstream stream(payload);
-    std::getline(stream, sipMessageType); // Get first line
-
-    // Print extracted information
-    std::cout << "SIP Message: " << sipMessageType << "\n";
-    if (!extension.empty() && !ip.empty()) {
-        std::cout << "Extension: " << extension << ", SIP URI IP: " << ip << std::endl;
-    }
-    std::cout << "----------------------------------" << std::endl;
+    jsPubAck_Destroy(pa);
 }
 
 void packetHandler(u_char* user, const struct pcap_pkthdr* header, const u_char* packet) {
     if (isSIPPacket(header, packet)) {
         sipPacket pkt;
         pkt.seq_no = header->ts.tv_sec * 1000000 + header->ts.tv_usec;
-        // pkt.packetData = (char*)packet + 14;
         pkt.packetData.assign(packet + 14, packet + header->caplen);
-
         // std::cout << pkt.seq_no << " " << pkt.packetData.size() << " " << header->caplen << std::endl;
 
-        // Get UDP payload (SIP message)
-        const uint8_t* sip_payload = packet + 42; // Ethernet (14) + IP (20) + UDP (8)
-        size_t sip_length = header->caplen - 42;
-        // Convert payload to string for regex processing
-        std::string payload(reinterpret_cast<const char*>(sip_payload), sip_length);
-        // Extract details
-        extractSIPDetails(payload);
+        // Serialize packet
+        std::vector<uint8_t> serializedData = serializePacket(pkt);
 
-        SIPPacketQueue::getInstance().enqueue(pkt);
+        // Publish to stream
+        publishPacketToNats(serializedData);
     }
 }
 
@@ -69,6 +92,9 @@ void captureLivePackets(const char* interface) {
         std::cerr << "Error: " << errbuf << std::endl;
         return;
     }
+
+    // Initialize JetStream NATS
+    NATSInitialize();
 
     // Capture packets indefinitely
     pcap_loop(handle, 0, packetHandler, nullptr);
@@ -103,7 +129,7 @@ int main(){
         return 1;
     }
 
-    // Select the first interface
+    // Select the first interface (eth)
     const char* interface = alldevs->name;
     // const char* interface = "any";
     std::cout << "Capturing on interface: " << interface << std::endl;
