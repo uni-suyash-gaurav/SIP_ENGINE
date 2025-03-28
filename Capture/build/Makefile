@@ -117,30 +117,30 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named main
+# Target rules for targets named packetSniffer
 
 # Build rule for target.
-main: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 main
-.PHONY : main
+packetSniffer: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 packetSniffer
+.PHONY : packetSniffer
 
 # fast build rule for target.
-main/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
-.PHONY : main/fast
+packetSniffer/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/packetSniffer.dir/build.make CMakeFiles/packetSniffer.dir/build
+.PHONY : packetSniffer/fast
 
 #=============================================================================
-# Target rules for targets named mainLive
+# Target rules for targets named packetSnifferLive
 
 # Build rule for target.
-mainLive: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mainLive
-.PHONY : mainLive
+packetSnifferLive: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 packetSnifferLive
+.PHONY : packetSnifferLive
 
 # fast build rule for target.
-mainLive/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/mainLive.dir/build.make CMakeFiles/mainLive.dir/build
-.PHONY : mainLive/fast
+packetSnifferLive/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/packetSnifferLive.dir/build.make CMakeFiles/packetSnifferLive.dir/build
+.PHONY : packetSnifferLive/fast
 
 #=============================================================================
 # Target rules for targets named jsSubscriber
@@ -155,77 +155,77 @@ jsSubscriber/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/jsSubscriber.dir/build.make CMakeFiles/jsSubscriber.dir/build
 .PHONY : jsSubscriber/fast
 
-PacketSniffer.o: PacketSniffer.cpp.o
-.PHONY : PacketSniffer.o
+src/PacketSniffer.o: src/PacketSniffer.cpp.o
+.PHONY : src/PacketSniffer.o
 
 # target to build an object file
-PacketSniffer.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/PacketSniffer.cpp.o
-.PHONY : PacketSniffer.cpp.o
+src/PacketSniffer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/packetSniffer.dir/build.make CMakeFiles/packetSniffer.dir/src/PacketSniffer.cpp.o
+.PHONY : src/PacketSniffer.cpp.o
 
-PacketSniffer.i: PacketSniffer.cpp.i
-.PHONY : PacketSniffer.i
+src/PacketSniffer.i: src/PacketSniffer.cpp.i
+.PHONY : src/PacketSniffer.i
 
 # target to preprocess a source file
-PacketSniffer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/PacketSniffer.cpp.i
-.PHONY : PacketSniffer.cpp.i
+src/PacketSniffer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/packetSniffer.dir/build.make CMakeFiles/packetSniffer.dir/src/PacketSniffer.cpp.i
+.PHONY : src/PacketSniffer.cpp.i
 
-PacketSniffer.s: PacketSniffer.cpp.s
-.PHONY : PacketSniffer.s
+src/PacketSniffer.s: src/PacketSniffer.cpp.s
+.PHONY : src/PacketSniffer.s
 
 # target to generate assembly for a file
-PacketSniffer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/PacketSniffer.cpp.s
-.PHONY : PacketSniffer.cpp.s
+src/PacketSniffer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/packetSniffer.dir/build.make CMakeFiles/packetSniffer.dir/src/PacketSniffer.cpp.s
+.PHONY : src/PacketSniffer.cpp.s
 
-packetSnifferLive.o: packetSnifferLive.cpp.o
-.PHONY : packetSnifferLive.o
+src/packetSnifferLive.o: src/packetSnifferLive.cpp.o
+.PHONY : src/packetSnifferLive.o
 
 # target to build an object file
-packetSnifferLive.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/mainLive.dir/build.make CMakeFiles/mainLive.dir/packetSnifferLive.cpp.o
-.PHONY : packetSnifferLive.cpp.o
+src/packetSnifferLive.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/packetSnifferLive.dir/build.make CMakeFiles/packetSnifferLive.dir/src/packetSnifferLive.cpp.o
+.PHONY : src/packetSnifferLive.cpp.o
 
-packetSnifferLive.i: packetSnifferLive.cpp.i
-.PHONY : packetSnifferLive.i
+src/packetSnifferLive.i: src/packetSnifferLive.cpp.i
+.PHONY : src/packetSnifferLive.i
 
 # target to preprocess a source file
-packetSnifferLive.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/mainLive.dir/build.make CMakeFiles/mainLive.dir/packetSnifferLive.cpp.i
-.PHONY : packetSnifferLive.cpp.i
+src/packetSnifferLive.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/packetSnifferLive.dir/build.make CMakeFiles/packetSnifferLive.dir/src/packetSnifferLive.cpp.i
+.PHONY : src/packetSnifferLive.cpp.i
 
-packetSnifferLive.s: packetSnifferLive.cpp.s
-.PHONY : packetSnifferLive.s
+src/packetSnifferLive.s: src/packetSnifferLive.cpp.s
+.PHONY : src/packetSnifferLive.s
 
 # target to generate assembly for a file
-packetSnifferLive.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/mainLive.dir/build.make CMakeFiles/mainLive.dir/packetSnifferLive.cpp.s
-.PHONY : packetSnifferLive.cpp.s
+src/packetSnifferLive.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/packetSnifferLive.dir/build.make CMakeFiles/packetSnifferLive.dir/src/packetSnifferLive.cpp.s
+.PHONY : src/packetSnifferLive.cpp.s
 
-parserSubscriber.o: parserSubscriber.cpp.o
-.PHONY : parserSubscriber.o
+src/parserSubscriber.o: src/parserSubscriber.cpp.o
+.PHONY : src/parserSubscriber.o
 
 # target to build an object file
-parserSubscriber.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/jsSubscriber.dir/build.make CMakeFiles/jsSubscriber.dir/parserSubscriber.cpp.o
-.PHONY : parserSubscriber.cpp.o
+src/parserSubscriber.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jsSubscriber.dir/build.make CMakeFiles/jsSubscriber.dir/src/parserSubscriber.cpp.o
+.PHONY : src/parserSubscriber.cpp.o
 
-parserSubscriber.i: parserSubscriber.cpp.i
-.PHONY : parserSubscriber.i
+src/parserSubscriber.i: src/parserSubscriber.cpp.i
+.PHONY : src/parserSubscriber.i
 
 # target to preprocess a source file
-parserSubscriber.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/jsSubscriber.dir/build.make CMakeFiles/jsSubscriber.dir/parserSubscriber.cpp.i
-.PHONY : parserSubscriber.cpp.i
+src/parserSubscriber.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jsSubscriber.dir/build.make CMakeFiles/jsSubscriber.dir/src/parserSubscriber.cpp.i
+.PHONY : src/parserSubscriber.cpp.i
 
-parserSubscriber.s: parserSubscriber.cpp.s
-.PHONY : parserSubscriber.s
+src/parserSubscriber.s: src/parserSubscriber.cpp.s
+.PHONY : src/parserSubscriber.s
 
 # target to generate assembly for a file
-parserSubscriber.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/jsSubscriber.dir/build.make CMakeFiles/jsSubscriber.dir/parserSubscriber.cpp.s
-.PHONY : parserSubscriber.cpp.s
+src/parserSubscriber.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jsSubscriber.dir/build.make CMakeFiles/jsSubscriber.dir/src/parserSubscriber.cpp.s
+.PHONY : src/parserSubscriber.cpp.s
 
 # Help Target
 help:
@@ -236,17 +236,17 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... jsSubscriber"
-	@echo "... main"
-	@echo "... mainLive"
-	@echo "... PacketSniffer.o"
-	@echo "... PacketSniffer.i"
-	@echo "... PacketSniffer.s"
-	@echo "... packetSnifferLive.o"
-	@echo "... packetSnifferLive.i"
-	@echo "... packetSnifferLive.s"
-	@echo "... parserSubscriber.o"
-	@echo "... parserSubscriber.i"
-	@echo "... parserSubscriber.s"
+	@echo "... packetSniffer"
+	@echo "... packetSnifferLive"
+	@echo "... src/PacketSniffer.o"
+	@echo "... src/PacketSniffer.i"
+	@echo "... src/PacketSniffer.s"
+	@echo "... src/packetSnifferLive.o"
+	@echo "... src/packetSnifferLive.i"
+	@echo "... src/packetSnifferLive.s"
+	@echo "... src/parserSubscriber.o"
+	@echo "... src/parserSubscriber.i"
+	@echo "... src/parserSubscriber.s"
 .PHONY : help
 
 

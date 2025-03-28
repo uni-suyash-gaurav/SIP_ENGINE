@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/jsSubscriber.dir/parserSubscriber.cpp.o"
-  "CMakeFiles/jsSubscriber.dir/parserSubscriber.cpp.o.d"
+  "CMakeFiles/jsSubscriber.dir/src/parserSubscriber.cpp.o"
+  "CMakeFiles/jsSubscriber.dir/src/parserSubscriber.cpp.o.d"
   "jsSubscriber"
   "jsSubscriber.pdb"
 )

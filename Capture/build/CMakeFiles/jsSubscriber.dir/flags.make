@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -isystem /home/suyashgaurav72/.conan2/p/b/cnats383ef0346a326/p/include
+CXX_INCLUDES = -I"/mnt/c/Users/102151/OneDrive - UNIPHORE SOFTWARE SYSTEMS PVT LTD/Documents/SIP_ENGINE/Capture/include" -isystem /home/suyashgaurav72/.conan2/p/b/cnats383ef0346a326/p/include
 
 CXX_FLAGS = -O3 -DNDEBUG
 

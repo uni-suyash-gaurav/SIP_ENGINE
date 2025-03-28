@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/mnt/c/Users/102151/OneDrive - UNIPHORE SOFTWARE SYSTEMS PVT LTD/Documents/SIP_ENGINE/Capture/src/parserSubscriber.cpp" "CMakeFiles/jsSubscriber.dir/src/parserSubscriber.cpp.o" "gcc" "CMakeFiles/jsSubscriber.dir/src/parserSubscriber.cpp.o.d"
+  "/mnt/c/Users/102151/OneDrive - UNIPHORE SOFTWARE SYSTEMS PVT LTD/Documents/SIP_ENGINE/Capture/src/PacketSniffer.cpp" "CMakeFiles/packetSniffer.dir/src/PacketSniffer.cpp.o" "gcc" "CMakeFiles/packetSniffer.dir/src/PacketSniffer.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

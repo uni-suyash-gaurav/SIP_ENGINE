@@ -7,17 +7,18 @@ include_directories(/usr/local/include)
 # Link against the ACE library
 link_directories(/usr/local/lib)
 
-add_executable(main PacketSniffer.cpp)
-add_executable(mainLive packetSnifferLive.cpp)
-add_executable(jsSubscriber parserSubscriber.cpp)
+# Include directory for headers
+include_directories(${CMAKE_SOURCE_DIR}/include)
+
+add_executable(packetSniffer src/PacketSniffer.cpp)
+add_executable(packetSnifferLive src/packetSnifferLive.cpp)
+add_executable(jsSubscriber src/parserSubscriber.cpp)
 
 find_package(libpcap REQUIRED)
 find_package(cnats REQUIRED)
 
-target_link_libraries(main libpcap::libpcap)
-target_link_libraries(main cnats::nats_static)
-target_link_libraries(main ACE)
-target_link_libraries(mainLive libpcap::libpcap)
-target_link_libraries(mainLive ACE)
-target_link_libraries(mainLive cnats::nats_static)
+target_link_libraries(packetSniffer libpcap::libpcap cnats::nats_static)
+target_link_libraries(packetSniffer ACE)
+target_link_libraries(packetSnifferLive libpcap::libpcap cnats::nats_static)
+target_link_libraries(packetSnifferLive ACE)
 target_link_libraries(jsSubscriber cnats::nats_static)

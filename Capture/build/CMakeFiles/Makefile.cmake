@@ -67,7 +67,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/main.dir/DependInfo.cmake"
-  "CMakeFiles/mainLive.dir/DependInfo.cmake"
+  "CMakeFiles/packetSniffer.dir/DependInfo.cmake"
+  "CMakeFiles/packetSnifferLive.dir/DependInfo.cmake"
   "CMakeFiles/jsSubscriber.dir/DependInfo.cmake"
   )
