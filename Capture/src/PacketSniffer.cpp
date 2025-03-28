@@ -70,6 +70,7 @@ int main() {
             pkt.seq_no = header->ts.tv_sec * 1000000 + header->ts.tv_usec;
             // pkt.packetData = (char*) packet + 14;
             pkt.packetData.assign(packet + 14, packet + header->caplen);
+            pkt.arrival_time = getFormattedTimestamp(header->ts);
 
             // std::cout << pkt.packetData.size() << " " << header->caplen << std::endl;
             // Serialize packet

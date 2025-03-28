@@ -6,10 +6,13 @@
 #include <pcap.h>
 #include <cstring>
 #include <cstdint>
+#include <ctime>
+#include <sstream>
 
 struct sipPacket {
     uint64_t seq_no; // Timestamp-based sequence number
     std::vector<uint8_t> packetData;
+    std::string arrival_time;
 };
 
 bool isSIPPacket(const struct pcap_pkthdr* header, const u_char* packet) {
@@ -46,13 +49,40 @@ bool isSIPPacket(const struct pcap_pkthdr* header, const u_char* packet) {
     return false;
 }
 
-// Function to serialize sipPacket
 std::vector<uint8_t> serializePacket(const sipPacket& pkt) {
-    std::vector<uint8_t> buffer(sizeof(pkt.seq_no) + pkt.packetData.size());
-    std::memcpy(buffer.data(), &pkt.seq_no, sizeof(pkt.seq_no));
-    std::memcpy(buffer.data() + sizeof(pkt.seq_no), pkt.packetData.data(), pkt.packetData.size());
+    size_t arrivalTimeLen = pkt.arrival_time.size();
+    size_t totalSize = sizeof(pkt.seq_no) + sizeof(size_t) + arrivalTimeLen + pkt.packetData.size();
+    
+    std::vector<uint8_t> buffer(totalSize);
+    uint8_t* ptr = buffer.data();
+    
+    // Copy seq_no
+    std::memcpy(ptr, &pkt.seq_no, sizeof(pkt.seq_no));
+    ptr += sizeof(pkt.seq_no);
+
+    // Copy arrival_time length
+    std::memcpy(ptr, &arrivalTimeLen, sizeof(size_t));
+    ptr += sizeof(size_t);
+
+    // Copy arrival_time string
+    std::memcpy(ptr, pkt.arrival_time.data(), arrivalTimeLen);
+    ptr += arrivalTimeLen;
+
+    // Copy packetData
+    std::memcpy(ptr, pkt.packetData.data(), pkt.packetData.size());
 
     return buffer;
+}
+
+
+std::string getFormattedTimestamp(const struct timeval& ts) {
+    char buffer[64];
+    std::tm* timeinfo = std::localtime(&ts.tv_sec);
+    std::strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", timeinfo);
+
+    std::ostringstream oss;
+    oss << buffer;
+    return oss.str();
 }
 
 #endif // UTILS_H

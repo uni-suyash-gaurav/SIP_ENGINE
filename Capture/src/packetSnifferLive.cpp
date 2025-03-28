@@ -73,6 +73,7 @@ void packetHandler(u_char* user, const struct pcap_pkthdr* header, const u_char*
         sipPacket pkt;
         pkt.seq_no = header->ts.tv_sec * 1000000 + header->ts.tv_usec;
         pkt.packetData.assign(packet + 14, packet + header->caplen);
+        pkt.arrival_time = getFormattedTimestamp(header->ts);
         // std::cout << pkt.seq_no << " " << pkt.packetData.size() << " " << header->caplen << std::endl;
 
         // Serialize packet

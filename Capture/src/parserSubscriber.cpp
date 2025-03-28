@@ -12,18 +12,33 @@
 struct sipPacket {
     uint64_t seq_no; // Timestamp-based sequence number
     std::vector<uint8_t> packetData;
+    std::string arrival_time;
 };
 
-// Deserialize function
 sipPacket deserializePacket(const uint8_t* data, size_t length) {
     sipPacket pkt;
-    // Extract seq_no
-    std::memcpy(&pkt.seq_no, data, sizeof(pkt.seq_no));
-    // Extract packetData
-    pkt.packetData.assign(data + sizeof(pkt.seq_no), data + length);
+    const uint8_t* ptr = data;
+
+    // Read seq_no
+    std::memcpy(&pkt.seq_no, ptr, sizeof(pkt.seq_no));
+    ptr += sizeof(pkt.seq_no);
+
+    // Read arrival_time length
+    size_t arrivalTimeLen;
+    std::memcpy(&arrivalTimeLen, ptr, sizeof(size_t));
+    ptr += sizeof(size_t);
+
+    // Read arrival_time string
+    pkt.arrival_time.assign(reinterpret_cast<const char*>(ptr), arrivalTimeLen);
+    ptr += arrivalTimeLen;
+
+    // Read packetData
+    size_t packetDataLen = length - (sizeof(pkt.seq_no) + sizeof(size_t) + arrivalTimeLen);
+    pkt.packetData.assign(ptr, ptr + packetDataLen);
 
     return pkt;
 }
+
 
 int main(){
     natsStatus s;
@@ -95,7 +110,8 @@ int main(){
                 sipPacket pkt = deserializePacket(data, length);
 
 
-                std::cout << pkt.seq_no << ", " << std::endl;
+                std::cout << pkt.seq_no << std::endl;
+                std::cout << pkt.arrival_time << std::endl;
                 int protocol = (int)pkt.packetData[9];
                 // Extract source & destination IP (IP Header: bytes 12-15 for src, 16-19 for dest)
                 char srcIP[16], destIP[16];
